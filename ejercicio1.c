@@ -2,6 +2,7 @@
  * Objetivo: Completar las primitivas de la pila para evaluación de RPN.
  */
 
+
 #include "pilas.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,6 +19,8 @@ void inicializar(PILA *stk) {
        1. Inicializar el contador de elementos (cnt) a 0.
        2. Inicializar el puntero al tope a NULL. 
     */
+    stk -> ctn = 0
+    stk -> tope = NULL 
 }
 
 // Funcion push
@@ -29,6 +32,17 @@ void push(PILA *stk, DATO x) {
        4. Actualizar el tope de la pila para que sea el nuevo elemento.
        5. Incrementar el contador (cnt).
     */
+    ELEMENTO *nuevo = (ELEMENTO*) malloc(sizeof(ELEMENTO);
+    if(nuevo == NULL){
+        printf("ERROR: No hay memoria disponible");
+        exit(1);
+        
+}
+
+nuevo->dato = x;
+nuevo->sig:stk->tope;
+stkp->tope= nuevo;
+stk -> cnt++;
 }
 
 // Funcion pop
@@ -37,6 +51,7 @@ DATO pop(PILA *stk) {
         printf("ERROR: Intento de POP en pila vacia (Stack Underflow)\n");
         exit(1); 
     }
+    
     /* TODO: 
        1. Declarar una variable DATO para el valor de retorno.
        2. Declarar un puntero ELEMENTO temporal para el nodo a eliminar.
@@ -46,17 +61,34 @@ DATO pop(PILA *stk) {
        6. Liberar la memoria (free) del nodo temporal.
        7. Retornar el dato.
     */
+    
+    DATO valor;
+    ELEMENTO *temp;
+    temp = stk-> tope;
+    valor = temp -> dato;
+    stk -> tope = temp -> sig;
+    stk -> cnt--;
+    free(temp);
+    return valor;
+    
+    
+
+    
 }
 
 // Funcion estavacia
 BOOLEAN estavacia(PILA *stk) {
     /* TODO: Retornar VERDADERO si el contador es 0, FALSO de lo contrario. */
+    return(stk -> cnt == 0);
+    
     return FALSE; 
 }
 
 // Funcion estallena
 BOOLEAN estallena(PILA *stk) {
     /* TODO: Retornar VERDADERO si el contador es igual a FULL. */
+    return(stk -> cnt == FULL);
+    
     return FALSE;
 }
 
